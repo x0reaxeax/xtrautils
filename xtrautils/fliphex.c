@@ -3,10 +3,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, const char *argv[]) {
+int main(int argc, char *argv[]) {
     if (argc < 2) {
         fprintf(stderr, "usage: %s hexbytes\n", argv[0]);
         return EXIT_FAILURE;
+    }
+
+    char *space = strchr(argv[1], ' ');
+    // remove all spaces
+    while (NULL != space) {
+        memmove(space, space + 1, strlen(space));
+        space = strchr(argv[1], ' ');
     }
 
     size_t slen = strlen(argv[1]);
